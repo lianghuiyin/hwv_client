@@ -1,0 +1,21 @@
+Hwv.SessionController = Ember.ObjectController.extend({
+    needs:["application"],
+    isLogined:false,
+    user:null,
+    token:0,
+    userDidChange:function(){
+    	Hwv.set("currentUser",this.get("user"));
+    }.observes("user"),
+    actions:{
+	    login:function(user){
+	        this.set("user",user);
+	        this.set("isLogined",true);
+	        this.send("goIndex");
+	    },
+	    logout:function(){
+	        this.set("user",null);
+	        this.set("isLogined",false);
+	        this.send("goIndex");
+	    }
+    }
+});
